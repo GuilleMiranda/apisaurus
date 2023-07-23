@@ -1,13 +1,12 @@
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
+from pymongo.mongo_client import MongoClient
+from typing import Dict
 import os
 import urllib.parse
-from bson import ObjectId
 
 load_dotenv()
 
-username = urllib.parse.quote_plus(os.getenv("USERNAME"))
+username = urllib.parse.quote_plus(os.getenv("USER"))
 password = urllib.parse.quote_plus(os.getenv("PASSWORD"))
 
 connection = MongoClient("mongodb+srv://%s:%s@cluster0.gjsvusw.mongodb.net/?retryWrites=true&w=majority" % (username, password))
@@ -15,13 +14,20 @@ connection = MongoClient("mongodb+srv://%s:%s@cluster0.gjsvusw.mongodb.net/?retr
 database = connection.dinoBaseDB
 collection = database.dinosaurs
 
-
-def insert_data(data):
-    document = collection.insert_one(data)
+def delete_all():
+    document = collection.delete_many({})
     return document.acknowledged
 
-def insert_multiple_data(data):
+def delete_many(data: Dict):
+    document = collection.delete_many(data)
+    return 
+
+def insert_many(data: Dict):
     document = collection.insert_many(data)
+    return document.acknowledged
+
+def insert_one(data: Dict):
+    document = collection.insert_one(data)
     return document.acknowledged
 
 def close_connection():
