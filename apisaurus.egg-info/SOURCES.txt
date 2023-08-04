@@ -1,9 +1,0 @@
-README.md
-setup.cfg
-setup.py
-apisaurus.egg-info/PKG-INFO
-apisaurus.egg-info/SOURCES.txt
-apisaurus.egg-info/dependency_links.txt
-apisaurus.egg-info/top_level.txt
-database/__init__.py
-database/server.py
