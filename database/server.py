@@ -29,6 +29,9 @@ def aggregate():
         ])
     return document.next()
 
+def find(name: str):
+    document = collection.find_one({"name": name }, {"_id": 0})
+    return document
 
 def delete_all():
     document = collection.delete_many({})
